@@ -27,7 +27,6 @@ namespace WebApp.Data
 				entity.ToTable("Entity1"); // Mapping the table name
 
 				// additional configurations for properties
-				entity.Property(e => e.Name).HasMaxLength(100);
 				entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
 				entity.Property(e => e.Status).HasDefaultValue(true);
 			});
@@ -37,9 +36,6 @@ namespace WebApp.Data
 			{
 				entity.ToTable("Entity2"); // Mapping the table name
 				
-				// additional configurations for properties
-				entity.Property(e => e.AnotherRequiredField).HasMaxLength(200);
-
 				/* NOTE: The foreign key (FK) relationship is already configured by [ForeignKey] in the Entity2 class. 
 				 *You would only come here if you wanted to change the deletion behavior (OnDelete)*/
 
