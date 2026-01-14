@@ -6,7 +6,10 @@
     <title>@ViewData["Title"] - WebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApp.styles.css" asp-append-version="true" />  
+    <link rel="stylesheet" href="/css/dataTables.bootstrap5.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/sweetalert2.min.css" asp-append-version="true" />
+    <link rel="stylesheet" href="/css/buttons.bootstrap5.min.css" asp-append-version="true">
 </head>
 <body>
     <header>
@@ -39,7 +42,66 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/jquery.mask.min.js"></script>
+    <script src="~/js/jquery.mask.min.js"></script>
+    <script src="~/js/jquery.dataTables.min.js" asp-append-version="true"></script>
+    <script src="~/js/dataTables.bootstrap5.min.js" asp-append-version="true"></script>
+    <script src="~/js/jszip.min.js" asp-append-version="true"></script>
+    <script src="~/js/pdfmake.min.js" asp-append-version="true"></script>
+    <script src="~/js/vfs_fonts.js"></script>
+    <script src="~/js/dataTables.buttons.min.js"></script>
+    <script src="~/js/buttons.bootstrap5.min.js"></script>
+    <script src="~/js/buttons.html5.min.js"></script>
+    <script src="~/js/buttons.print.min.js"></script>
+    <script src="~/js/sweetalert2@11.js" asp-append-version="true"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/site-utils.js" asp-append-version="true"></script>
+    <script src="~/js/site-validation.js" asp-append-version="true"> </script>
+
+    <script>
+        $(document).ready(function () {
+            $('table').each(function() {
+                if (!$.fn.DataTable.isDataTable(this)) {
+                    $(this).DataTable({
+                        "language": {
+                            "url": "/lib/es-ES.json"
+                        },
+                        "responsive": true,
+                        "lengthMenu": [5, 10, 25, 50],
+                        "dom": "<'row'<'col-sm-12 col-md-4'B><'col-sm-12 col-md-4'l><'col-sm-12 col-md-4'f>>" +
+                               "<'row'<'col-sm-12'tr>>" +
+                               "<'row'<'col-sm-12 col-md-5'i><'col-sm-12 col-md-7'p>>",
+                        "buttons": [
+                            {
+                                extend: 'excel',
+                                className: 'btn btn-success btn-sm',
+                                text: '<i class="bi bi-file-earmark-excel"></i> Excel',
+                                exportOptions: {
+                                columns: ':not(:last-child)'
+                                }
+                            },
+                            {
+                                extend: 'pdf',
+                                className: 'btn btn-danger btn-sm',
+                                text: '<i class="bi bi-file-earmark-pdf"></i> PDF',
+                                orientation: 'landscape',
+                                exportOptions: {
+                                columns: ':not(:last-child)'
+                                }
+                            }
+                        ],
+                        "columnDefs": [
+                            {
+                                "targets": -1,
+                                "orderable": false,
+                                "searchable": false
+                            }
+                        ]
+                    });
+                }
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
