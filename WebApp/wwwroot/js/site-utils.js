@@ -68,3 +68,43 @@ CoreUI.Selectores = {
         });
     }
 };
+
+//// Un parametro
+//CoreUI.Selectores.configurarBusqueda({
+//    btnId: "btnSearch",             // Trigger button ID
+//    sourceId: "IdCourse",           // Source dropdown ID
+//    targetId: "IdStudent",          // Target dropdown to populate
+//    paramName: "IdCourse",          // Parameter name sent to the server
+//    url: '@Url.Action("Search")',   // Server endpoint
+//    placeholder: "Select Student"    // Label for the first option
+//});
+
+//// Several params
+//CoreUI.Selectores.configurarBusqueda({
+//    btnId: "btnSearch",
+//    targetId: "IdStudent",
+//    url: '@Url.Action("AdvancedSearch")',
+//    placeholder: "Select Student",
+
+//    // Custom function to collect multiple values
+//    obtenerDatosCustom: function () {
+//        return {
+//            idCourse: $("#IdCourse").val(),
+//            shift: $("#IdShift").val(),
+//            isActive: true
+//        };
+//    }
+//});
+
+// CONTROLLERS
+//[HttpGet]
+//public async Task < JsonResult > AdvancedSearch(int IdEstudiante, DateTime Fechamatricula)
+//{
+//    var cursos = await _context.Entity1
+//        .Include(c => c.Entity2)
+//        .Where(c => c.Active)
+//        .Select(e => new { llave = e.ID, valor = e.View })
+//        .ToListAsync();
+
+//    return Json(cursos);
+//}

@@ -27,8 +27,8 @@ namespace WebApp.Data
 				entity.ToTable("Entity1"); // Mapping the table name
 
 				// additional configurations for properties
-				entity.Property(e => e.CreatedAt).HasDefaultValueSql("GETDATE()");
-				entity.Property(e => e.Status).HasDefaultValue(true);
+				entity.Property(e => e.FechaCreacion).HasDefaultValueSql("GETDATE()");
+				entity.Property(e => e.Activo).HasDefaultValue(true);
 			});
 
 			// Configuration Entity2 ---
@@ -52,15 +52,15 @@ namespace WebApp.Data
 				{
 					Entity1Id = 1,
 					Name = "Sample Item 1 (Active)",
-					CreatedAt = new DateTime(2025,11,28),
-					Status = true
+					FechaCreacion = new DateTime(2025,11,28),
+					Activo = true
 				},
 				new Entity1
 				{
 					Entity1Id = 2,
 					Name = "Sample Item 2 (Inactive)",
-					CreatedAt = new DateTime(2025, 11, 28),
-					Status = false
+					FechaCreacion = new DateTime(2025, 11, 28),
+					Activo = false
 				}
 			);
 		}

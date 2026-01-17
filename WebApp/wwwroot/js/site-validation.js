@@ -75,6 +75,6 @@ CoreUI.Forms = {
 };
 
 // Se ejecuta automáticamente al cargar cualquier página
-$(document).ready(function () {
+$(function () {
     CoreUI.Forms.inicializarMascaras();
 });

@@ -1,5 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace WebApp.Models
 {
 	// This is the primary or "master" entity (the "1" side)
@@ -14,15 +15,27 @@ namespace WebApp.Models
 		[Display(Name = "Descriptive Name")] // This is how it will appear in the view's <label>
 		public string Name { get; set; } = String.Empty;
 
+		[Required(ErrorMessage = "The field is required")] // Server-side and client-side validation
+		[Display(Name = "DecimalField")] // This is how it will appear in the view's <label>
+		[Column(TypeName = "decimal(18, 2)")]
+		public decimal DecimalField { get; set; }
+
 		[MaxLength(50)]
 		[Display(Name = "Optional Description")]
 		public string? OptionalDescription { get; set; } // The '?' allows this to be null in the DB
 
-		[Display(Name = "Creation Date")]
-		public DateTime CreatedAt { get; set; }
+		[ScaffoldColumn(false)]
+		public DateTime FechaCreacion { get; set; }
 
-		[Display(Name = "Active Status")]
-		public bool Status { get; set; }
+		[ScaffoldColumn(false)]
+		public DateTime? FechaModificacion { get; set; }
+
+		[ScaffoldColumn(false)]
+		public bool Activo { get; set; }
+
+		[NotMapped]
+		[Display(Name = "ViewProperty")]
+		public string InformationView => $"{Name} - {OptionalDescription}";
 		#endregion
 
 		#region Relations
