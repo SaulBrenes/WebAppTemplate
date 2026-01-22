@@ -15,7 +15,8 @@ namespace WebApp.Controllers
 
         public IActionResult Index()
         {
-            return View();
+			// var rows = _context.Database.SqlQuery<EntityView>($@"SQLQUERY").ToList();
+			return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

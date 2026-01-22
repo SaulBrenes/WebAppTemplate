@@ -13,7 +13,7 @@
 
 		[Required]
 		[MaxLength(50)]
-		public string AnotherRequiredField { get; set; } = string.Empty;
+		public required string AnotherRequiredField { get; set; } 
 
 		// --- Foreign Key (FK) ---
 		[Display(Name = "Main Entity")]
@@ -21,19 +21,6 @@
 		#endregion
 
 		#region Relations
-		// --- Navigation Property ("ONE" Side) ---
-
-		// An Entity2 belongs to ONE Entity1 (e.g., A Vehicle belongs to ONE Client)
-
-		// 1. [ForeignKey("Entity1Id")]: Tells EF Core that this property
-		//    (RelatedEntity1) is "loaded" using the ID from the Entity1Id property.
-
-		// 2. [ValidateNever]: CRUCIAL! Tells ASP.NET to NOT validate
-		//    this object during a POST, since it will only receive the Entity1Id.
-
-		// 3. = null!: (Null-forgiving operator). Tells the compiler:
-		//    "Trust me, this property will NEVER be null because
-		//    Entity Framework will populate it for me."
 		[ForeignKey("Entity1Id")]
 		[ValidateNever]
 		public Entity1 RelatedEntity1 { get; set; } = null!;
